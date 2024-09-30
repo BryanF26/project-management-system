@@ -9,7 +9,7 @@ class Project (
 ) {
     init {
         require(name.isBlank()) {
-            "Project name must not be empty."
+            throw IllegalArgumentException( "Project name must not be empty.")
         }
     }
     fun checkProjectStatus() {
