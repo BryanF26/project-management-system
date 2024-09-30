@@ -8,6 +8,21 @@ class Project (
     val tasks: MutableList<Task> = mutableListOf()
 ) {
     fun checkProjectStatus() {
-        if (tasks.)
+        var allCompleted = true
+
+        for (task in tasks) {
+            if (task.status != TaskStatus.Completed) {
+                allCompleted = false
+                break
+            }
+        }
+
+        if (allCompleted) {
+            status = ProjectStatus.Completed
+        }
     }
+
+    fun hasTasks(): Boolean {
+        return tasks.isNotEmpty()
+    }s
 }
