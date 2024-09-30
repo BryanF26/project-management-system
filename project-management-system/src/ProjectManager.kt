@@ -6,13 +6,13 @@ class ProjectManager{
     private val tasks = mutableListOf<Task>()
     private val users = mutableListOf<User>()
 
-    fun createProject(id: Int, name: String, deadline: LocalDate, status: ProjectStatus) {
-        val newProject = Project(id, name, deadline, status)
+    fun createProject(name: String, deadline: LocalDate) {
+        val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
         projects.add(newProject)
         println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
     }
 
-    fun AddTaskToProject(projectId: Int, taskIds: Array<Int>){
+    fun addTaskToProject(projectId: Int, taskIds: Array<Int>){
         val project = projects.find {it.id == projectId}
         if(project != null) {
             for (taskId in taskIds) {
