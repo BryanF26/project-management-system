@@ -38,26 +38,23 @@ class ProjectManager{
 
     fun assignTask(taskId: Int, userId: Int){
         val task = tasks.find { it.id == taskId }
-        val user = users.find { it.id == userId }
         if (task != null) {
-            if(!isExistingUser(userId)) {
-                throw IllegalArgumentException("User was not found.")
-            } else {
+            if(isExistingUser(userId)) {
+                val user = users.find { it.id == userId }
                 task.assignedTo = user
                 println("User '${user?.name}' has been assigned to task '${task?.description}'.")
+            } else {
+                throw IllegalArgumentException("User with ID $userId was not found.")
             }
         } else {
             println("Task with ID $taskId not found.")
         }
     }
 
-    fun updateTaskStatus(taskId: Int, newStatus: String){
+    fun updateTaskStatus(taskId: Int, newStatus: TaskStatus){
         val task = tasks.find { it.id == taskId }
         if (task != null) {
-            if(!isValidTaskStatus(newStatus)) {
-                throw IllegalArgumentException("Invalid status: $newStatus. Must be one of ${TaskStatus.values().joinToString()}")
-            }
-            task.status = TaskStatus.valueOf(newStatus)
+            task.status = newStatus
             println("Task '${task.description}' status updated to '$newStatus'.")
         } else {
             println("Task with ID $taskId not found.")
