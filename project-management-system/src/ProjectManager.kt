@@ -12,7 +12,7 @@ class ProjectManager{
         println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
     }
 
-    fun addTaskToProject(projectId: Int, taskIds: Array<Int>){
+    fun addTaskToProject(projectId: Int, taskIds: List<Int>){
         val project = projects.find {it.id == projectId}
         if(project != null) {
             for (taskId in taskIds) {

@@ -34,16 +34,16 @@ fun main() {
         }
         if(selectedMenu == 2){
             println("Project Id: ")
-            val project_id:Int = scanner.nextInt()
+            val projectId:Int = scanner.nextInt()
 
-            val tasks_id = arrayListOf<Int>()
+            val tasksId = arrayListOf<Int>()
             do {
                 println("Task Id [0 to exit]: ")
                 var temp = scanner.nextInt()
-                tasks_id.add(temp)
+                tasksId.add(temp)
             } while (temp != 0)
 
-            pm.addTaskToProject(project_id, tasks_id)
+            pm.addTaskToProject(projectId, tasksId)
         }
         if(selectedMenu == 3){
             pm.assignTask()
