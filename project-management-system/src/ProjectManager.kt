@@ -42,7 +42,7 @@ class ProjectManager{
             if(isExistingUser(userId)) {
                 val user = users.find { it.id == userId }
                 task.assignedTo = user
-                println("User '${user?.name}' has been assigned to task '${task?.description}'.")
+                println("User '${user?.name}' has been assigned to task '${task.description}'.")
             } else {
                 throw IllegalArgumentException("User with ID $userId was not found.")
             }
@@ -51,18 +51,26 @@ class ProjectManager{
         }
     }
 
-    fun updateTaskStatus(taskId: Int, newStatus: TaskStatus){
+    fun updateTaskStatus(taskId: Int, newStatus: String) {
         val task = tasks.find { it.id == taskId }
         if (task != null) {
-            task.status = newStatus
-            println("Task '${task.description}' status updated to '$newStatus'.")
+            if (isValidTaskStatus(newStatus)) {
+                task.status = TaskStatus.valueOf(newStatus)
+                println("Task '${task.description}' status updated to '$newStatus'.")
+            } else {
+                throw IllegalArgumentException("Invalid status: $newStatus. Must be one of ${TaskStatus.values().joinToString()}.")
+            }
         } else {
             println("Task with ID $taskId not found.")
         }
     }
 
-    fun projectStatusTracking(){
-
+    fun projectStatusTracking(projectId: Int, taskIds: List<Int>){
+        val project = projects.find { it.id == projectId }
+        if (project != null && project.tasks.all { it.status == TaskStatus.Completed}) {
+            project.status = ProjectStatus.Completed
+            println("Project '${project.name}' has been marked as Completed.")
+        }
     }
 
     fun isExistingUser(userId: Int): Boolean {
