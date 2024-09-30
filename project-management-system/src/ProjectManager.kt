@@ -65,7 +65,7 @@ class ProjectManager{
         }
     }
 
-    fun projectStatusTracking(projectId: Int, taskIds: List<Int>){
+    fun projectStatusTracking(projectId: Int){
         val project = projects.find { it.id == projectId }
         if (project != null && project.tasks.all { it.status == TaskStatus.Completed}) {
             project.status = ProjectStatus.Completed
