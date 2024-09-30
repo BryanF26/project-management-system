@@ -1,3 +1,12 @@
+package service
+
+import enum.ProjectStatus
+import enum.Roles
+import enum.TaskPriority
+import enum.TaskStatus
+import entity.Project
+import entity.Task
+import entity.User
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -38,7 +47,7 @@ class ProjectManager{
             val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
             projects.add(newProject)
             println("==============================================================")
-            println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
+            println("entity.Project '${newProject.name}' has been created with ID: ${newProject.id}.")
             println("==============================================================")
         }
     }
@@ -51,11 +60,11 @@ class ProjectManager{
                 if (task != null) {
                     project.tasks.add(task)
                     println("==================================================================")
-                    println("Task with ID: '${taskId}' has been successfully added to Project ID: ${projectId}.")
+                    println("entity.Task with ID: '${taskId}' has been successfully added to entity.Project ID: ${projectId}.")
                     println("==================================================================")
                 } else {
                     println("==================================================================")
-                    println("Failed to add Task with ID: '${taskId}' to Project ID: ${projectId}.")
+                    println("Failed to add entity.Task with ID: '${taskId}' to entity.Project ID: ${projectId}.")
                     println("==================================================================")
                 }
             }
@@ -73,14 +82,14 @@ class ProjectManager{
                 val user = users.find { it.id == userId }
                 task.assignedTo = user
                 println("==============================================================")
-                println("User '${user?.name}' has been assigned to task '${task.description}'.")
+                println("entity.User '${user?.name}' has been assigned to task '${task.description}'.")
                 println("==============================================================")
             } else {
-                throw IllegalArgumentException("User with ID $userId was not found.")
+                throw IllegalArgumentException("entity.User with ID $userId was not found.")
             }
         } else {
             println("==============================================================")
-            println("Task with ID $taskId not found.")
+            println("entity.Task with ID $taskId not found.")
             println("==============================================================")
         }
     }
@@ -91,24 +100,24 @@ class ProjectManager{
             if (isValidTaskStatus(newStatus)) {
                 task.status = TaskStatus.valueOf(newStatus)
                 println("==============================================================")
-                println("Task '${task.description}' status updated to '$newStatus'.")
+                println("entity.Task '${task.description}' status updated to '$newStatus'.")
                 println("==============================================================")
             } else {
                 throw IllegalArgumentException("Invalid status: $newStatus. Must be one of ${TaskStatus.values().joinToString()}.")
             }
         } else {
             println("==============================================================")
-            println("Task with ID $taskId not found.")
+            println("entity.Task with ID $taskId not found.")
             println("==============================================================")
         }
     }
 
     fun projectStatusTracking(projectId: Int){
         val project = projects.find { it.id == projectId }
-        if (project != null && project.tasks.all { it.status == TaskStatus.Completed}) {
+        if (project != null && project.tasks.all { it.status == TaskStatus.Completed }) {
             project.status = ProjectStatus.Completed
             println("==============================================================")
-            println("Project '${project.name}' has been marked as Completed.")
+            println("entity.Project '${project.name}' has been marked as Completed.")
             println("==============================================================")
         } else{
             println("==============================================================")

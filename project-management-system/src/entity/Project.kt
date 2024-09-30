@@ -1,3 +1,6 @@
+package entity
+
+import enum.ProjectStatus
 import java.time.LocalDate
 
 class Project (
@@ -9,7 +12,7 @@ class Project (
 ) {
     init {
         if(name.isBlank()) {
-            throw IllegalArgumentException( "Project name must not be empty.")
+            throw IllegalArgumentException( "entity.Project name must not be empty.")
         }
     }
 }

@@ -1,13 +1,13 @@
 import java.util.Scanner
-import ProjectManager
+import service.ProjectManager
 
-fun menus(){
-    println("**Project Management System**")
-    println("1. Create Project")
-    println("2. Add Task to Project")
-    println("3. Assign Task")
-    println("4. Update Task Status")
-    println("5. Project Status Tracking")
+fun showMenu(){
+    println("**entity.Project Management System**")
+    println("1. Create entity.Project")
+    println("2. Add entity.Task to entity.Project")
+    println("3. Assign entity.Task")
+    println("4. Update entity.Task Status")
+    println("5. entity.Project Status Tracking")
     println(">> ")
 }
 
@@ -19,17 +19,17 @@ fun main() {
     var selectedMenu = 0
 
     while (selectedMenu != 6){
-        menus()
+        showMenu()
         try {
             selectedMenu = scanner.nextInt()
             scanner.nextLine()
             when(selectedMenu){
 
                 1 -> {
-                    println("Project Name: ")
+                    println("entity.Project Name: ")
                     val name:String = scanner.nextLine()
 
-                    println("Project Deadline [YYYY-MM-DD]: ")
+                    println("entity.Project Deadline [YYYY-MM-DD]: ")
                     val date:String = scanner.nextLine()
 
                     pm.createProject(name, date)
@@ -37,7 +37,7 @@ fun main() {
                 2 -> {
                     for (x in pm.projects){
                         println("ID: ${x.id} Name: ${x.name} Deadline: ${x.deadline} Status: ${x.status}")
-                        println("Task: ")
+                        println("entity.Task: ")
                         for (y in x.tasks){
                             println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
                         }
@@ -45,7 +45,7 @@ fun main() {
                             println("There is no task")
                         }
                     }
-                    println("Project Id: ")
+                    println("entity.Project Id: ")
                     val projectId:Int = scanner.nextInt()
 
                     val tasksId = arrayListOf<Int>()
@@ -53,7 +53,7 @@ fun main() {
                         for (x in pm.tasks){
                             println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
                         }
-                        println("Task Id [0 to exit]: ")
+                        println("entity.Task Id [0 to exit]: ")
                         val temp = scanner.nextInt()
                         if(temp == 0) break
                         tasksId.add(temp)
@@ -65,12 +65,12 @@ fun main() {
                     for (x in pm.tasks){
                         println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
                     }
-                    println("Task Id: ")
+                    println("entity.Task Id: ")
                     val taskId: Int = scanner.nextInt()
                     for (x in pm.users){
                         println("ID: ${x.id} Name: ${x.name} Role: ${x.role}")
                     }
-                    println("User Id: ")
+                    println("entity.User Id: ")
                     val userId: Int = scanner.nextInt()
                     pm.assignTask(taskId, userId)
                 }
@@ -78,7 +78,7 @@ fun main() {
                     for (x in pm.tasks){
                         println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
                     }
-                    println("Task Id: ")
+                    println("entity.Task Id: ")
                     val taskId: Int = scanner.nextInt()
                     scanner.nextLine()
                     println("Update Status [Not_Started | In_Progress | Completed]: ")
@@ -88,7 +88,7 @@ fun main() {
                 5 -> {
                     for (x in pm.projects){
                         println("ID: ${x.id} Name: ${x.name} Deadline: ${x.deadline} Status: ${x.status}")
-                        println("Task:")
+                        println("entity.Task:")
                         for (y in x.tasks){
                             println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
                         }
@@ -96,7 +96,7 @@ fun main() {
                             println("There is no task")
                         }
                     }
-                    println("Project Id: ")
+                    println("entity.Project Id: ")
                     val projectId: Int = scanner.nextInt()
 
                     pm.projectStatusTracking(projectId)

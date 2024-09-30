@@ -1,3 +1,7 @@
+package entity
+
+import enum.Roles
+
 class User(
     var id: Int,
     var name: String,
