@@ -15,8 +15,8 @@ class ProjectManager{
         users.add(user2)
         users.add(user3)
 
-        val task1 = Task(1,"Desc1", TaskPriority.High, null, TaskStatus.Not_Started, null)
-        val task2 = Task(2,"Desc2", TaskPriority.Low, null, TaskStatus.Not_Started, null)
+        val task1 = Task(1,"Desc1", TaskPriority.High, null, TaskStatus.Completed, null)
+        val task2 = Task(2,"Desc2", TaskPriority.Low, null, TaskStatus.Completed, null)
         val task3 = Task(3,"Desc3", TaskPriority.High, null, TaskStatus.Not_Started, null)
         val task4 = Task(4,"Desc4", TaskPriority.Medium, null, TaskStatus.Not_Started, null)
         val task5 = Task(5,"Desc5", TaskPriority.High, null, TaskStatus.Not_Started, null)
@@ -60,6 +60,10 @@ class ProjectManager{
                     println("==============================================================")
                 }
             }
+        } else{
+            println("==============================================================")
+            println("There is no project with ID: '${projectId}'.")
+            println("==============================================================")
         }
     }
 
@@ -106,6 +110,10 @@ class ProjectManager{
             project.status = ProjectStatus.Completed
             println("==============================================================")
             println("Project '${project.name}' has been marked as Completed.")
+            println("==============================================================")
+        } else{
+            println("==============================================================")
+            println("There is no project with ID: '${projectId}'.")
             println("==============================================================")
         }
     }
