@@ -38,7 +38,9 @@ class ProjectManager{
             println(name)
             val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
             projects.add(newProject)
+            println("==============================================================")
             println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
+            println("==============================================================")
         }
     }
 
@@ -49,9 +51,13 @@ class ProjectManager{
                 val task = tasks.find { it.id == taskId }
                 if (task != null) {
                     project.tasks.add(task)
+                    println("==============================================================")
                     println("Task with ID: '${taskId}' has been successfully added to Project ID: ${projectId}.")
+                    println("==============================================================")
                 } else {
+                    println("==============================================================")
                     println("Failed to add Task with ID: '${taskId}' to Project ID: ${projectId}.")
+                    println("==============================================================")
                 }
             }
         }
@@ -63,12 +69,16 @@ class ProjectManager{
             if(isExistingUser(userId)) {
                 val user = users.find { it.id == userId }
                 task.assignedTo = user
+                println("==============================================================")
                 println("User '${user?.name}' has been assigned to task '${task.description}'.")
+                println("==============================================================")
             } else {
                 throw IllegalArgumentException("User with ID $userId was not found.")
             }
         } else {
+            println("==============================================================")
             println("Task with ID $taskId not found.")
+            println("==============================================================")
         }
     }
 
@@ -77,12 +87,16 @@ class ProjectManager{
         if (task != null) {
             if (isValidTaskStatus(newStatus)) {
                 task.status = TaskStatus.valueOf(newStatus)
+                println("==============================================================")
                 println("Task '${task.description}' status updated to '$newStatus'.")
+                println("==============================================================")
             } else {
                 throw IllegalArgumentException("Invalid status: $newStatus. Must be one of ${TaskStatus.values().joinToString()}.")
             }
         } else {
+            println("==============================================================")
             println("Task with ID $taskId not found.")
+            println("==============================================================")
         }
     }
 
@@ -90,7 +104,9 @@ class ProjectManager{
         val project = projects.find { it.id == projectId }
         if (project != null && project.tasks.all { it.status == TaskStatus.Completed}) {
             project.status = ProjectStatus.Completed
+            println("==============================================================")
             println("Project '${project.name}' has been marked as Completed.")
+            println("==============================================================")
         }
     }
 
