@@ -4,11 +4,11 @@ class Task(
     val id: Int,
     var description:String,
     var priority: TaskPriority,
-    var assignedTo:User,
+    var assignedTo:User?,
     var status:TaskStatus,
-    var dueDate:LocalDate
+    var dueDate:LocalDate?
 ) {
-    fun greet() {
-
+    init {
+        if(description.isBlank()) throw IllegalArgumentException("Description cannot be empty.")
     }
 }
