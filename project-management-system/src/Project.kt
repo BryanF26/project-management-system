@@ -8,8 +8,8 @@ class Project (
     val tasks: MutableList<Task> = mutableListOf()
 ) {
     init {
-        require(name.isNotEmpty()) {
-            "Project name must not be empty."
+        require(name.isBlank()) {
+            throw IllegalArgumentException( "Project name must not be empty.")
         }
     }
     fun checkProjectStatus() {
