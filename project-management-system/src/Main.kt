@@ -23,13 +23,23 @@ fun main() {
     while (selectedMenu != 6){
         menus()
         selectedMenu = scanner.nextInt()
+        scanner.nextLine()
         if(selectedMenu == 1){
             println("Project Name: ")
             val name:String = scanner.nextLine()
 
+            if (name.isEmpty()) {
+                println("Project name must not be empty.")
+                continue
+            }
+
             println("Project Deadline [YYYY-MM-DD]: ")
             val date:String = scanner.nextLine()
 
+            if (date.isEmpty()) {
+                println("Project date must not be empty.")
+                continue
+            }
             pm.createProject(name, date)
         }
         if(selectedMenu == 2){
@@ -39,7 +49,7 @@ fun main() {
             val tasksId = arrayListOf<Int>()
             do {
                 println("Task Id [0 to exit]: ")
-                var temp = scanner.nextInt()
+                val temp = scanner.nextInt()
                 tasksId.add(temp)
             } while (temp != 0)
 
@@ -59,8 +69,21 @@ fun main() {
             val newStatus: String = scanner.nextLine()
             pm.updateTaskStatus(taskId, newStatus)
         }
-        if(selectedMenu == 5){
-            pm.projectStatusTracking()
+        if (selectedMenu == 5) {
+            println("Project Id: ")
+            val projectId: Int = scanner.nextInt()
+
+            val taskIds = arrayListOf<Int>()
+            do {
+                println("Task Id [0 to exit]: ")
+                val temp = scanner.nextInt()
+                if (temp != 0) {
+                    taskIds.add(temp)
+                }
+            } while (temp != 0)
+
+            pm.projectStatusTracking(projectId, taskIds)
         }
+
     }
 }
