@@ -36,28 +36,49 @@ class ProjectManager{
         }
     }
 
-    fun assignTask(){
-
+    fun assignTask(taskId: Int, userId: Int){
+        val task = tasks.find { it.id == taskId }
+        val user = users.find { it.id == userId }
+        if (task != null) {
+            if(!isExistingUser(userId)) {
+                throw IllegalArgumentException("User was not found.")
+            } else {
+                task.assignedTo = user
+                println("User '${user?.name}' has been assigned to task '${task?.description}'.")
+            }
+        } else {
+            println("Task with ID $taskId not found.")
+        }
     }
 
-    fun updateTaskStatus(){
-
+    fun updateTaskStatus(taskId: Int, newStatus: String){
+        val task = tasks.find { it.id == taskId }
+        if (task != null) {
+            if(!isValidTaskStatus(newStatus)) {
+                throw IllegalArgumentException("Invalid status: $newStatus. Must be one of ${TaskStatus.values().joinToString()}")
+            }
+            task.status = TaskStatus.valueOf(newStatus)
+            println("Task '${task.description}' status updated to '$newStatus'.")
+        } else {
+            println("Task with ID $taskId not found.")
+        }
     }
 
     fun projectStatusTracking(){
 
     }
 
-    fun createUser(id: Int, name: String, roleInput: String): User {
-        val role = try {
-            Roles.valueOf(roleInput)
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("Invalid role: $roleInput. Must be one of ${Roles.values().joinToString()}")
-        }
-
-        return User(id, name, role)
+    fun isExistingUser(userId: Int): Boolean {
+        return users.any { it.id == userId }
     }
 
-
+    fun isValidTaskStatus(status: String): Boolean {
+        return try {
+            TaskStatus.valueOf(status)
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
+    }
 
 }
