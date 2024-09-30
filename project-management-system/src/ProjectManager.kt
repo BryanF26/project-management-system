@@ -25,4 +25,15 @@ class ProjectManager{
     fun ProjectStatusTrakcing(){
 
     }
+
+    fun CreateUser(id: Int, name: String, roleInput: String): User {
+        val role = try {
+            Roles.valueOf(roleInput)  // This will throw an IllegalArgumentException if roleInput is invalid
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException("Invalid role: $roleInput. Must be one of ${Roles.values().joinToString()}")
+        }
+
+        return User(id, name, role)
+    }
+
 }
