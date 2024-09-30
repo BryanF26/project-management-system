@@ -35,7 +35,6 @@ class ProjectManager{
             null
         }
         if(deadline != null) {
-            println(name)
             val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
             projects.add(newProject)
             println("==============================================================")
@@ -51,13 +50,13 @@ class ProjectManager{
                 val task = tasks.find { it.id == taskId }
                 if (task != null) {
                     project.tasks.add(task)
-                    println("==============================================================")
+                    println("==================================================================")
                     println("Task with ID: '${taskId}' has been successfully added to Project ID: ${projectId}.")
-                    println("==============================================================")
+                    println("==================================================================")
                 } else {
-                    println("==============================================================")
+                    println("==================================================================")
                     println("Failed to add Task with ID: '${taskId}' to Project ID: ${projectId}.")
-                    println("==============================================================")
+                    println("==================================================================")
                 }
             }
         } else{

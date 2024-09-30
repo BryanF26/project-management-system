@@ -26,28 +26,19 @@ fun main() {
             println("Project Name: ")
             val name:String = scanner.nextLine()
 
-            if (name.isEmpty()) {
-                println("Project name must not be empty.")
-                continue
-            }
-
             println("Project Deadline [YYYY-MM-DD]: ")
             val date:String = scanner.nextLine()
 
-            if (date.isEmpty()) {
-                println("Project date must not be empty.")
-                continue
-            }
             pm.createProject(name, date)
         }
         if(selectedMenu == 2){
             for (x in pm.projects){
                 println("ID: ${x.id} Name: ${x.name} Deadline: ${x.deadline} Status: ${x.status}")
-                println("Task:")
+                println("Task: ")
                 for (y in x.tasks){
                     println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
                 }
-                if(pm.tasks.isEmpty()){
+                if(x.tasks.isEmpty()){
                     println("There is no task")
                 }
             }
@@ -98,7 +89,7 @@ fun main() {
                 for (y in x.tasks){
                     println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
                 }
-                if(pm.tasks.isEmpty()){
+                if(x.tasks.isEmpty()){
                     println("There is no task")
                 }
             }
