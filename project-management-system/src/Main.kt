@@ -70,6 +70,7 @@ fun main() {
         if(selectedMenu == 4){
             println("Task Id: ")
             val taskId: Int = scanner.nextInt()
+            scanner.nextLine()
             println("Update Status: ")
             val newStatus: String = scanner.nextLine()
             pm.updateTaskStatus(taskId, newStatus)
