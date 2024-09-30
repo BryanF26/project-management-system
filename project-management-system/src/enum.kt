@@ -9,3 +9,6 @@ enum class TaskPriority {
 enum class TaskStatus {
     Not_Started, In_Progress, Completed
 }
+enum class Role {
+    Manager, Developer, Tester
+}
