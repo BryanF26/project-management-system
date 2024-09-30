@@ -46,10 +46,18 @@ fun main() {
             pm.addTaskToProject(projectId, tasksId)
         }
         if(selectedMenu == 3){
-            pm.assignTask()
+            println("Task Id: ")
+            val taskId: Int = scanner.nextInt()
+            println("User Id: ")
+            val userId: Int = scanner.nextInt()
+            pm.assignTask(taskId, userId)
         }
         if(selectedMenu == 4){
-            pm.updateTaskStatus()
+            println("Task Id: ")
+            val taskId: Int = scanner.nextInt()
+            println("Update Status: ")
+            val newStatus: String = scanner.nextLine()
+            pm.updateTaskStatus(taskId, newStatus)
         }
         if(selectedMenu == 5){
             pm.projectStatusTracking()
