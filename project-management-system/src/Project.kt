@@ -7,6 +7,11 @@ class Project (
     var status: ProjectStatus,
     val tasks: MutableList<Task> = mutableListOf()
 ) {
+    init {
+        require(name.isBlank()) {
+            throw IllegalArgumentException( "Project name must not be empty.")
+        }
+    }
     fun checkProjectStatus() {
         var allCompleted = true
 
@@ -24,5 +29,5 @@ class Project (
 
     fun hasTasks(): Boolean {
         return tasks.isNotEmpty()
-    }s
+    }
 }
