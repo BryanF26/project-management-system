@@ -41,18 +41,22 @@ fun main() {
             pm.createProject(name, date)
         }
         if(selectedMenu == 2){
+            for (x in pm.projects){
+                println("${x.id} ${x.name} ${x.deadline} ${x.status} ${x.tasks}")
+            }
             println("Project Id: ")
             val projectId:Int = scanner.nextInt()
 
             val tasksId = arrayListOf<Int>()
             do {
                 for (x in pm.tasks){
-                    println("$x.id ${x.status} ${x.priority}")
+                    println("${x.id} ${x.description} ${x.priority} ${x.assignedTo} ${x.status} ${x.dueDate}")
                 }
                 println("Task Id [0 to exit]: ")
                 val temp = scanner.nextInt()
+                if(temp == 0) break
                 tasksId.add(temp)
-            } while (temp != 0)
+            } while (true)
 
             pm.addTaskToProject(projectId, tasksId)
         }
