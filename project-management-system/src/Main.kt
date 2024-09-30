@@ -12,11 +12,9 @@ fun menus(){
 }
 
 fun main() {
-    val user1 = User(1, "Bryan", Roles.Manager)
-    val user2 = User(2, "Kenny", Roles.Developer)
-    val user3 = User(3, "Tasya", Roles.Tester)
 
     val pm = ProjectManager()
+    pm.Init()
     val scanner = Scanner(System.`in`)
     var selectedMenu = 0
 
@@ -48,6 +46,9 @@ fun main() {
 
             val tasksId = arrayListOf<Int>()
             do {
+                for (x in pm.tasks){
+                    println("$x.id ${x.status} ${x.priority}")
+                }
                 println("Task Id [0 to exit]: ")
                 val temp = scanner.nextInt()
                 tasksId.add(temp)
