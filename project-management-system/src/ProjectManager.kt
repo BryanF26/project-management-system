@@ -1,4 +1,5 @@
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ProjectManager{
 
@@ -6,10 +7,18 @@ class ProjectManager{
     private val tasks = mutableListOf<Task>()
     private val users = mutableListOf<User>()
 
-    fun createProject(name: String, deadline: LocalDate) {
-        val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
-        projects.add(newProject)
-        println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
+    fun createProject(name: String, inputtedDeadline: String) {
+        val deadline: LocalDate?  =  try {
+            LocalDate.parse(inputtedDeadline, DateTimeFormatter.ISO_LOCAL_DATE)
+        } catch (e: Exception) {
+            println("Invalid date format. Please enter a date in the format yyyy-mm-dd.")
+            null
+        }
+        if(deadline != null) {
+            val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
+            projects.add(newProject)
+            println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")
+        }
     }
 
     fun addTaskToProject(projectId: Int, taskIds: Array<Int>){
