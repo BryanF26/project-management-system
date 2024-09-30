@@ -42,7 +42,14 @@ fun main() {
         }
         if(selectedMenu == 2){
             for (x in pm.projects){
-                println("${x.id} ${x.name} ${x.deadline} ${x.status} ${x.tasks}")
+                println("ID: ${x.id} Name: ${x.name} Deadline: ${x.deadline} Status: ${x.status}")
+                println("Task:")
+                for (y in x.tasks){
+                    println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
+                }
+                if(pm.tasks.isEmpty()){
+                    println("There is no task")
+                }
             }
             println("Project Id: ")
             val projectId:Int = scanner.nextInt()
@@ -50,7 +57,7 @@ fun main() {
             val tasksId = arrayListOf<Int>()
             do {
                 for (x in pm.tasks){
-                    println("${x.id} ${x.description} ${x.priority} ${x.assignedTo} ${x.status} ${x.dueDate}")
+                    println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
                 }
                 println("Task Id [0 to exit]: ")
                 val temp = scanner.nextInt()
@@ -61,21 +68,40 @@ fun main() {
             pm.addTaskToProject(projectId, tasksId)
         }
         if(selectedMenu == 3){
+            for (x in pm.tasks){
+                println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
+            }
             println("Task Id: ")
             val taskId: Int = scanner.nextInt()
+            for (x in pm.users){
+                println("ID: ${x.id} Name: ${x.name} Role: ${x.role}")
+            }
             println("User Id: ")
             val userId: Int = scanner.nextInt()
             pm.assignTask(taskId, userId)
         }
         if(selectedMenu == 4){
+            for (x in pm.tasks){
+                println("ID: ${x.id} Description: ${x.description} Prioritx: ${x.priority} AssignedTo: ${x.assignedTo?.name} Status: ${x.status} DueDate: ${x.dueDate}")
+            }
             println("Task Id: ")
             val taskId: Int = scanner.nextInt()
             scanner.nextLine()
-            println("Update Status: ")
+            println("Update Status [Not_Started | In_Progress | Completed]: ")
             val newStatus: String = scanner.nextLine()
             pm.updateTaskStatus(taskId, newStatus)
         }
         if (selectedMenu == 5) {
+            for (x in pm.projects){
+                println("ID: ${x.id} Name: ${x.name} Deadline: ${x.deadline} Status: ${x.status}")
+                println("Task:")
+                for (y in x.tasks){
+                    println("ID: ${y.id} Description: ${y.description} Priority: ${y.priority} AssignedTo: ${y.assignedTo?.name} Status: ${y.status} DueDate: ${y.dueDate}")
+                }
+                if(pm.tasks.isEmpty()){
+                    println("There is no task")
+                }
+            }
             println("Project Id: ")
             val projectId: Int = scanner.nextInt()
 
