@@ -15,6 +15,7 @@ class ProjectManager{
             null
         }
         if(deadline != null) {
+            println(name)
             val newProject = Project(projects.size+1, name, deadline, ProjectStatus.Active)
             projects.add(newProject)
             println("Project '${newProject.name}' has been created with ID: ${newProject.id}.")

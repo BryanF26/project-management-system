@@ -73,16 +73,7 @@ fun main() {
             println("Project Id: ")
             val projectId: Int = scanner.nextInt()
 
-            val taskIds = arrayListOf<Int>()
-            do {
-                println("Task Id [0 to exit]: ")
-                val temp = scanner.nextInt()
-                if (temp != 0) {
-                    taskIds.add(temp)
-                }
-            } while (temp != 0)
-
-            pm.projectStatusTracking(projectId, taskIds)
+            pm.projectStatusTracking(projectId)
         }
 
     }
